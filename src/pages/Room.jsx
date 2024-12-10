@@ -3,7 +3,7 @@ import  client,{ databases,DATABASE_ID,COLLECTION_ID_MESSAGE } from '../appwrite
 import { ID,Query,Role,Permission } from 'appwrite'
 import {Trash2 }from "react-feather"
 import Header from '../components/Header'
-import { useAuth } from '../utils/authContext'
+import { useAuth } from '../utils/AuthContext'
 
 const Room = () => {
 

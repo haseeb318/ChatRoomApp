@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useAuth } from '../utils/authContext'
+import { useAuth } from '../utils/AuthContext'
 
 const RegisterPage = () => {
 

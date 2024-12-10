@@ -1,6 +1,6 @@
 import React from 'react'
 import { LogOut } from 'react-feather'
-import { useAuth } from '../utils/authContext'
+import { useAuth } from '../utils/AuthContext'
 
 const Header = () => {
     const {user,handleUserLogout} = useAuth()
