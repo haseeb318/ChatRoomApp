@@ -20,6 +20,8 @@ const LoginPage = () => {
     password:""
   })
 
+  const[checkError, setCheckError]=useState("")
+
   const handleInputChange =(e)=>{
     let name = e.target.name
     let value = e.target.value
@@ -31,8 +33,17 @@ const LoginPage = () => {
     <div className='auth--container'>
     
       <div className='form--wrapper'>
-        <form onSubmit={(e)=>{handleUserLogin(e,credentials)}}>
+        <form onSubmit={async (e) => {
+  try {
+    const result = await handleUserLogin(e, credentials); 
+    console.log("result", result)
+    setCheckError(result)
+  } catch (error) {
+  // console.error("Login error:", error)
+  }
+}}>
           <div className='field--wrapper'>
+            <p style={{color:"red"}}>{checkError}</p>
             <label htmlFor="">Email:</label>
             <input 
             type="email"

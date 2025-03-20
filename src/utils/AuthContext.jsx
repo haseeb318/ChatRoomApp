@@ -1,13 +1,13 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { account } from '../appwriteConfig';
 import { ID } from 'appwrite';
-// import { useNavigator } from './useNavigator';
+import { useNavigate } from 'react-router-dom';
 
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  // const navigate =useNavigator()
+  const navigate = useNavigate()
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
 
@@ -25,7 +25,6 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
       }
     };
-
     checkUserSession();
   }, []);
 
@@ -38,10 +37,11 @@ export const AuthProvider = ({ children }) => {
       console.log("Login successful:", response);
       const accountDetails = await account.get();
       setUser(accountDetails);
-      // navigate("/")
+      navigate("/")
   
     } catch (error) {
       console.error("Login failed:", error.message);
+      return error.message
     }
   };
 
@@ -64,8 +64,6 @@ export const AuthProvider = ({ children }) => {
         credentials.password1,
         credentials.name
       )
-
-      
 
       await account.createEmailPasswordSession(credentials.email,credentials.password1)
       const accountDetails = await account.get();
